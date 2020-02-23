@@ -1,4 +1,4 @@
-image: "springci/spring-boot-ci-image"
+image: "springci/spring-boot-ci-image:master"
 
 stages:
   - build
