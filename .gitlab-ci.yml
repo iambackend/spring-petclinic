@@ -1,0 +1,26 @@
+image: springci/spring-boot-ci-image:latest
+
+stages:
+  - build
+  - test
+  - run
+
+cache:
+  paths:
+    - target/
+
+build_app:
+  stage: build
+  script:
+    - mvn compile
+
+test_app:
+  stage: test
+  script:
+    - mvn test
+
+run_app:
+  stage: run
+  script:
+    - mvn package
+    - mvn exec:java -Dexec.mainClass="com.jcg.maven.App"
