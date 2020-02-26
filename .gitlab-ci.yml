@@ -1,4 +1,4 @@
-image: "springci/spring-boot-ci-image:master"
+image: "maven:latest"
 
 stages:
   - build
