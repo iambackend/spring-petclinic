@@ -3,7 +3,6 @@ image: "maven:latest"
 stages:
   - build
   - test
-  - run
 
 cache:
   paths:
@@ -18,9 +17,3 @@ test_app:
   stage: test
   script:
     - mvn test
-
-run_app:
-  stage: run
-  script:
-    - mvn package
-    - mvn exec:java -Dexec.mainClass="com.jcg.maven.App"
