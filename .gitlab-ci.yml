@@ -17,3 +17,30 @@ test_app:
   stage: test
   script:
     - mvn test
+
+run_app:
+  tags:
+    - integration
+  stage: run
+  script:
+    - mvn  package
+    - mvn exec:java -Dexec.mainClass="org.springframework.samples.petclinic.PetClinicApplication"
+
+
+upload_app:
+    stage: upload
+    tags:
+    - integration
+    script:
+    - echo "Deploy review app"
+    artifacts:
+        name: "spring-petclinic"
+        paths:
+        - target/*.jar
+
+deploy:
+    stage: deploy
+    tags:
+    - stage-vm-shell
+    script:
+    - cp target/*.jar /home/vagrant/stage
